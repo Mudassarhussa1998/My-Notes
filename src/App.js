@@ -6,6 +6,7 @@ import Home from './Components/home';
 import Navbar from './Components/navbar';
 import About from './Components/about';
 import NotesState from './Context/notes/NotesState';
+import Notes from './Components/notes';
 import Alert from './Components/alert';
 
 
@@ -16,8 +17,9 @@ function App() {
       <NotesState>
           <BrowserRouter initialEntries={['/home']}>
               <Navbar />
-              <Alert message="This is a message" type="success" />
+              <Alert message="Note is updated" type="success" />
               <Routes>
+                <Route path="/" element={<Notes />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/home" element={<Home />} />

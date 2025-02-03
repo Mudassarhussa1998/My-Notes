@@ -5,6 +5,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.6.0",
     "@heroicons/react": "^2.2.0",
+    "@material-tailwind/react": "^2.1.10",
     "antd": "^5.23.2",
     "antd-style": "^3.7.1",
     "concurrently": "^9.1.2",

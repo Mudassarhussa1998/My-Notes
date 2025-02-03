@@ -15,6 +15,10 @@ export default function AddNote() { // ✅ Component name starts with uppercase
         e.preventDefault(); // ✅ Prevent form from refreshing the page
         addNote(note.name, note.description); // ✅ Call addNote function from context
         console.log("Adding note", note);
+        setNote({
+            name: "",
+            description: "",
+        });
     };
 
     return (

@@ -20,7 +20,7 @@ const NotesState = ({ children }) => {
         },
       });
 
-      if (!response.ok) {
+      if (!response.ok) { // noinspection ExceptionCaughtLocallyJS
         throw new Error(`Failed to fetch notes: ${response.status}`);
       }
 
@@ -44,6 +44,7 @@ const NotesState = ({ children }) => {
 
       if (!response.ok) {
         const errorData = await response.json();
+        // noinspection ExceptionCaughtLocallyJS
         throw new Error(errorData.error || "Failed to add note");
       }
 
@@ -65,6 +66,7 @@ const NotesState = ({ children }) => {
       });
 
       if (!response.ok) {
+        // noinspection ExceptionCaughtLocallyJS
         throw new Error("Failed to delete note");
       }
 
@@ -74,31 +76,47 @@ const NotesState = ({ children }) => {
     }
   };
 
-  const editNote = async (id, title, description) => {
+  const editNote = async (id, name, description) => {
     try {
+      // Retrieve the token securely from localStorage (or another secure place)
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjc5ZTc3YzAxOTYyODkyMjU4Zjc5Yzc4In0sImlhdCI6MTczODQzODU5Mn0.a1GKEFO8rot3RKCtS44DPkarVQcakCQumOm6RXd1-t4"// Authentication token
+       
+      if (!token) {
+        console.error("Authentication token is missing.");
+        return;
+      }
+  
       const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjc5ZTc3YzAxOTYyODkyMjU4Zjc5Yzc4In0sImlhdCI6MTczODQzODU5Mn0.a1GKEFO8rot3RKCtS44DPkarVQcakCQumOm6RXd1-t4", // Authentication token
+          "auth-token": token, // Use the token from localStorage
         },
-        body: JSON.stringify({ title, description }),
+        body: JSON.stringify({ name, description }),
       });
-
+  
       if (!response.ok) {
+        // noinspection ExceptionCaughtLocallyJS
         throw new Error("Failed to update note");
       }
-
-      //const updatedNote = await response.json();
+  
+      const updatedNote = await response.json(); // Parse the response to get the updated note
+      console.log("Updated note:", updatedNote);
+  
+      // Safe state update
       setNotes((prevNotes) =>
         prevNotes.map((note) =>
-          note._id === id ? { ...note, title, description } : note
+          note._id === id ? { ...note, name , description } : note
         )
-      ); // Safe state update
+      );
+  
     } catch (error) {
       console.error("Error editing note:", error.message);
+      // Optionally, show a user-friendly error message (e.g., Toast notification)
     }
   };
+  
+  
 
   return (
     <NoteContext.Provider value={{ notes, addNote, deleteNote, getNotes, editNote }}>
