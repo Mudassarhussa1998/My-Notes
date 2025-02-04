@@ -18,7 +18,6 @@ export default function NoteItem({ note, index }) {
   
 
   const handleSave = () => {
-    console.log("Saving note:", editedNote , note._id);
     editNote(note._id, editedNote.name, editedNote.description); // Use edited data here
     setIsModalOpen(false);
   };

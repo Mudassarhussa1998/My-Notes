@@ -41,7 +41,7 @@ export default function Login() {
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Reset errors
@@ -69,8 +69,19 @@ export default function Login() {
     }
 
     if (valid) {
-      console.log('Email:', email, 'Password:', password);
-      navigate('/home'); // Navigate after validation
+
+      const response = await fetch('http://localhost:4000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const json = await response.json();
+      console.log(json);
+
+
     }
   };
 

@@ -17,13 +17,13 @@ function App() {
       <NotesState>
           <BrowserRouter initialEntries={['/home']}>
               <Navbar />
-              <Alert message="Note is updated" type="success" />
               <Routes>
                 <Route path="/" element={<Notes />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/aboutus" element={<About />} />
+                <Route path="/alert " element={<Alert message="Note is updated" type="success" />} />
               </Routes>
           </BrowserRouter>
       </NotesState>

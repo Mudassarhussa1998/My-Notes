@@ -100,8 +100,7 @@ const NotesState = ({ children }) => {
         throw new Error("Failed to update note");
       }
   
-      const updatedNote = await response.json(); // Parse the response to get the updated note
-      console.log("Updated note:", updatedNote);
+      await response.json(); // Parse the response to get the updated note
   
       // Safe state update
       setNotes((prevNotes) =>

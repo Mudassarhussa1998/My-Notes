@@ -12,7 +12,8 @@ export default function Notes() {
     <>
       <Addnote />
      
-      <div className=" grid grid-cols-3 gap-4 w-full">
+      <div className="px-[50px] grid grid-cols-3 gap-4 w-full">
+        {notes.length === 0 && "No notes to display"}
         {notes.map((note, index) => (
           <Noteitems key={note.id || index} note={note} index={index} />
 

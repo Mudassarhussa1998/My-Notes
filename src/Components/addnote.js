@@ -13,12 +13,22 @@ export default function AddNote() { // ✅ Component name starts with uppercase
 
     const handleSubmit = (e) => {
         e.preventDefault(); // ✅ Prevent form from refreshing the page
+        if (note.name.trim() === "" || note.description.trim() === "") {
+            return alert("Name and Description are required");
+        }
+        else if(note.name.length > 20 || note.description.length > 100){
+            return alert("Name should be less than 20 characters and Description should be less than 100 characters");
+        }
+        else if(note.name.length < 3 || note.description.length < 3){
+            return alert("Name should be more than 3 characters and Description should be more than 3 characters");
+        }
+        else{
         addNote(note.name, note.description); // ✅ Call addNote function from context
-        console.log("Adding note", note);
         setNote({
             name: "",
             description: "",
         });
+        }
     };
 
     return (

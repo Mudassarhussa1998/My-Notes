@@ -27,10 +27,9 @@ const Navbar = () => {
             </div>
                   <div className="hidden lg:flex gap-8">
                     <a href="/home" className={`${location.pathname === "/home" ? "font-bold" : ""}`}>Home</a>
-                    <a href="/login" className={`${location.pathname === "/login" ? "font-bold" : ""}`}>Login</a>
-                    <a href="/signup" className={`${location.pathname === "/signup" ? "font-bold" : ""}`}>Signup</a>
                     <a href="/aboutus" className={`${location.pathname === "/aboutus" ? "font-bold" : ""}`}>About us</a>
                   </div>
+                  
                   <form className="hidden lg:flex items-center gap-4 ml-[200px]">
                     <input className="border-solid border-2 border-gray-300 rounded py-1 px-2 w-[400px]" placeholder="Search">
                     </input>
@@ -39,6 +38,12 @@ const Navbar = () => {
                     Search
                     </button>
                   </form>
+                
+
+                  <div className="ml-[90px] hidden lg:flex items-center gap-4">
+                    <a href="/login" className={`${location.pathname === "/login" ? "font-bold" : ""}`}>Login</a>
+                    <a href="/signup" className={`${location.pathname === "/signup" ? "font-bold" : ""}`}>Signup</a>
+                  </div>
 
                   </div>
                   {/* Secondary navigation */}
